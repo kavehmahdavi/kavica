@@ -1,0 +1,16 @@
+{
+  "thread_numbers": 27,
+  "missing_values": "mean",
+  "scale": true,
+  "hardware_counters": {
+    "IPC": "IPC",
+    "42000050": "PAPI_TOT_INS",
+    "42000059": "PAPI_TOT_CYC",
+    "42000000": "PAPI_L1_DCM",
+    "42000002": "PAPI_L2_DCM",
+    "42000055": "PAPI_BR_INS",
+    "42000046": "PAPI_BR_MSP",
+    "42001024": "RESOURCE_STALLS_SB",
+    "42001047": "RESOURCE_STALLS_ROB"
+  }
+}

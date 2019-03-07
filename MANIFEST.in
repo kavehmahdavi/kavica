@@ -1,0 +1,11 @@
+# Include
+include setup.py
+include README.md
+include user_guide.md
+include LICENSE.txt
+
+prune kavica
+prune test
+
+# Include the data files
+# recursive-include data *

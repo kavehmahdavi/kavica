@@ -1,0 +1,112 @@
+{
+  "clusteringsuit": false,
+  "eliminating_columns": [
+    "Region",
+    "Cover_Type"
+  ],
+  "pass_trough": [
+  ],
+  "KNN_complimentary": [],
+  "normalize": "max",
+  "sampling": {
+    "frac": 0.01,
+    "replace": true
+  },
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.05,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "cosine_Similarity",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": [
+  ],
+  "convert_to_ratio": [
+  ],
+  "engineer_feature": [
+  ],
+  "derived_features": [
+    {
+      "name": "Hillshade_mean",
+      "needed_features": [
+        "Hillshade_9am",
+        "Hillshade_Noon",
+        "Hillshade_3pm"
+      ],
+      "operation_chain": "(needed_features[0]+needed_features[1]+needed_features[2])/3"
+    },
+    {
+      "name": "DT_Hydro",
+      "needed_features": [
+        "HDT_Hydro",
+        "VDT_Hydro"
+      ],
+      "operation_chain": "euclidean(needed_features[0],needed_features[1])"
+    },
+    {
+      "name": "Hillshade_9am_sq",
+      "needed_features": [
+        "Hillshade_9am"
+      ],
+      "operation_chain": "needed_features[0]**0.5"
+    },
+    {
+      "name": "Hillshade_Noon_sq",
+      "needed_features": [
+        "Hillshade_Noon"
+      ],
+      "operation_chain": "needed_features[0]**0.5"
+    },
+    {
+      "name": "Hillshade_3pm_sq",
+      "needed_features": [
+        "Hillshade_3pm"
+      ],
+      "operation_chain": "needed_features[0]**0.5"
+    },
+    {
+      "name": "cosine_slope",
+      "needed_features": [
+        "slope"
+      ],
+      "operation_chain": "np.cos(np.deg2rad(needed_features[0]))"
+    },
+    {
+      "name": "interaction_9amnoon",
+      "needed_features": [
+        "Hillshade_9am",
+        "Hillshade_Noon"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]"
+    },
+    {
+      "name": "interaction_noon3pm",
+      "needed_features": [
+        "Hillshade_Noon",
+        "Hillshade_3pm"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]"
+    },
+    {
+      "name": "interaction_9am3pm",
+      "needed_features": [
+        "Hillshade_9am",
+        "Hillshade_3pm"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]"
+    },
+    {
+      "name": "interaction_9am3pm",
+      "needed_features": [
+        "Hillshade_9am",
+        "Hillshade_3pm"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]"
+    }
+  ],
+  "filter": [
+  ]
+}

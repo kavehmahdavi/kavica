@@ -1,0 +1,24 @@
+{
+  "clustered": false,
+  "thread_numbers": 27,
+  "hardware_counters": {
+    "IPC": "IPC",
+    "42000050": "PAPI_TOT_INS",
+    "42000059": "PAPI_TOT_CYC",
+    "42000000": "PAPI_L1_DCM",
+    "42000002": "PAPI_L2_DCM",
+    "42000055": "PAPI_BR_INS",
+    "42000046": "PAPI_BR_MSP",
+    "42001024": "RESOURCE_STALLS_SB",
+    "42001047": "RESOURCE_STALLS_ROB",
+    "41999999": "Active_hardware_counter_set"
+  },
+  "call_stacks": {
+    "70000001": "Caller_at_level_1",
+    "70000002": "Caller_at_level_2",
+    "70000003": "Caller_at_level_3",
+    "80000001": "Caller_line_at_level_1",
+    "80000002": "Caller_line_at_level_2",
+    "80000003": "Caller_line_at_level_3"
+  }
+}

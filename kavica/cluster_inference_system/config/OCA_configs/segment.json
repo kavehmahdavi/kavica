@@ -1,0 +1,35 @@
+{
+  "clusteringsuit": false,
+  "eliminating_columns": [
+    "class",
+    "region-pixel-count"
+  ],
+  "pass_trough": [
+  ],
+  "KNN_complimentary": [],
+  "normalize": false,
+  "sampling": {
+    "frac": 1.0,
+    "replace": true
+  },
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.0,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "distance_angle",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+  ],
+  "engineer_feature": [
+  ],
+  "derived_features": [
+
+  ],
+  "filter": [
+  ]
+}

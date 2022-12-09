@@ -1,0 +1,321 @@
+{
+  "iris": {
+    "dim": [
+      8,
+      8
+    ],
+    "epoch": 2600,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false,
+    "classification": {
+      "flag": true,
+      "_kernel": "rbf",
+      "_test_size": 0.1,
+      "axis_lab": [
+        "Sepal length",
+        "Petal length"
+      ]
+    },
+    "clustering": {
+      "_eps": 0.8,
+      "_min_points": 10,
+      "_grid": true,
+      "_model": "dbscan",
+      "_lab": "lab",
+      "_s": 100
+    }
+  },
+  "pan_cancer": {
+    "dim": [
+      9,
+      9
+    ],
+    "epoch": 1400,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "breast-cancer": {
+    "dim": [
+      8,
+      8
+    ],
+    "epoch": 680,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "wifi": {
+    "dim": [
+      6,
+      6
+    ],
+    "epoch": 2000,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "NBA": {
+    "dim": [
+      6,
+      6
+    ],
+    "epoch": 5000,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "prv": {
+    "dim": [
+      8,
+      8
+    ],
+    "epoch": 200,
+    "training_rate": 0.01,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.0,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "synt": {
+    "pattern": "circles",
+    "dim": [
+      12,
+      12
+    ],
+    "epoch": 3500,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "hbscan": {
+    "dim": [
+      12,
+      12
+    ],
+    "epoch": 3500,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "synt_mix": {
+    "dim": [
+      12,
+      12
+    ],
+    "epoch": 2500,
+    "training_rate": 0.001,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "synt_shape": {
+    "pattern": "circles",
+    "dim": [
+      15,
+      15
+    ],
+    "epoch": 700,
+    "training_rate": 0.01,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "OFF_EVENTES": {
+    "dim": [
+      8,
+      8
+    ],
+    "epoch": 300,
+    "training_rate": 0.012,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.16,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "DRWR": {
+    "dim": [
+      9,
+      9
+    ],
+    "epoch": 200,
+    "training_rate": 0.012,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.0,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "Gromacs": {
+    "dim": [
+      14,
+      14
+    ],
+    "epoch": 200,
+    "training_rate": 0.01,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.0,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": true,
+    "_balance": false,
+    "classification": {
+      "flag": false,
+      "_kernel": "rbf",
+      "_test_size": 0.1,
+      "axis_lab": [
+      ]
+    },
+    "clustering": {
+      "_eps": 50,
+      "_min_points": 100,
+      "_grid": true,
+      "_model": "dbscan",
+      "_lab": "lab",
+      "_s": 50
+    }
+  },
+  "mall": {
+    "dim": [
+      9,
+      9
+    ],
+    "epoch": 200,
+    "training_rate": 0.012,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.0,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  },
+  "sequoia": {
+    "dim": [
+      9,
+      9
+    ],
+    "epoch": 200,
+    "training_rate": 0.012,
+    "norm": null,
+    "make_jupiter_report": false,
+    "_filter": "all",
+    "neighborhood_size": 1.0,
+    "grid_features": [
+      0,
+      1
+    ],
+    "_forward": false,
+    "_log": false,
+    "_balance": false
+  }
+}

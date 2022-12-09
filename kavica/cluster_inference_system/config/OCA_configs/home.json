@@ -1,0 +1,36 @@
+{
+  "clusteringsuit": false,
+  "eliminating_columns": [
+    "Occupancy",
+    "ID",
+    "date"
+  ],
+  "pass_trough": [
+  ],
+  "KNN_complimentary": [],
+  "normalize": "max",
+  "sampling": {
+    "frac": 1.0,
+    "replace": true
+  },
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.001,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "distance",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+  ],
+  "engineer_feature": [
+  ],
+  "derived_features": [
+
+  ],
+  "filter": [
+  ]
+}

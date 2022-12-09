@@ -1,0 +1,9 @@
+{
+  "version_material": "<a href={} {}</a>",
+  "config_material": "Open configuration</th><td><a href={}>{}</a>",
+  "commandline_material": "clusters_organization {} {} --cw {} -c {} --s {} -i {}",
+  "style_material": "\n <style>img.center{display:block;margin-left:auto;margin-right:auto;width:70%;}</style> </head>",
+  "menu_material": "\n<li><a class=anchor href=#OCA>OCA</a></li> <li><a class=anchor href=#overview>Overview</a></li>",
+  "kavica_ver": "0.0a0",
+  "kavica_git": "https://pypi.org/project/KAVICA/>KAVICA"
+}

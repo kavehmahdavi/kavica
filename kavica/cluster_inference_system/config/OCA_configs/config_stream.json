@@ -1,0 +1,81 @@
+{
+  "eliminating_columns": [
+    "# Instance",
+    "Duration",
+    "n_PAPI_TOT_INS",
+    "n_IPC",
+    "x_PAPI_TOT_INS",
+    "x_RESOURCE_STALLS",
+    "x_PAPI_TOT_CYC"
+  ],
+  "pass_trough": [
+    "TaskId",
+    "ThreadId",
+    "Begin_Time",
+    "End_Time",
+    "Line",
+    "x_PAPI_BR_MSP",
+    "x_PAPI_BR_INS"
+  ],
+  "KNN_complimentary": [],
+  "normalize": true,
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.05,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "distance",
+  "ratio_divisor": "d_PAPI_TOT_INS",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+    "x_PAPI_L1_DCM",
+    "x_PAPI_L2_DCM",
+    "x_PAPI_L3_TCM"
+  ],
+  "engineer_feature": [
+    "burst_overlying_factor"
+  ],
+  "derived_features": [
+    {
+      "name": "L1/L2",
+      "needed_features": [
+        "x_PAPI_L1_DCM",
+        "x_PAPI_L2_DCM"
+      ],
+      "operation_chain": "needed_features[0]/needed_features[1]"
+    },
+    {
+      "name": "L2/L3",
+      "needed_features": [
+        "x_PAPI_L2_DCM",
+        "x_PAPI_L3_TCM"
+      ],
+      "operation_chain": "needed_features[0]/needed_features[1]"
+    },
+    {
+      "name": "MSP_Ratio",
+      "needed_features": [
+        "x_PAPI_BR_MSP",
+        "x_PAPI_BR_INS"
+      ],
+      "operation_chain": "needed_features[0]/needed_features[1]"
+    }
+  ],
+  "filter": [
+    {
+      "needed_features": [
+        "d_IPC"
+      ],
+      "operation_chain": "needed_features[0] > 0"
+    },
+    {
+      "needed_features": [
+        "d_PAPI_TOT_INS"
+      ],
+      "operation_chain": "needed_features[0] > 0"
+    }
+  ]
+}

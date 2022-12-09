@@ -1,0 +1,75 @@
+{
+  "clusteringsuit": false,
+  "eliminating_columns": [
+    "species"
+  ],
+  "pass_trough": [
+  ],
+  "KNN_complimentary": [],
+  "normalize": false,
+  "sampling": {
+    "frac": 1.0,
+    "replace": true
+  },
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.001,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "distance",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+  ],
+  "engineer_feature": [
+  ],
+  "derived_features": [
+    {
+      "name": "sepal_area",
+      "needed_features": [
+        "sepal_length",
+        "sepal_width"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]/2"
+    },
+    {
+      "name": "petal_area",
+      "needed_features": [
+        "petal_length",
+        "petal_width"
+      ],
+      "operation_chain": "needed_features[0]*needed_features[1]/2"
+    },
+    {
+      "name": "petal_lw_ratio",
+      "needed_features": [
+        "petal_length",
+        "petal_width"
+      ],
+      "operation_chain": "needed_features[0]/needed_features[1]"
+    },
+    {
+      "name": "sepal_lw_ratio",
+      "needed_features": [
+        "sepal_length",
+        "sepal_width"
+      ],
+      "operation_chain": "needed_features[0]/needed_features[1]"
+    },
+    {
+      "name": "sepal_area/petal_area",
+      "needed_features": [
+        "sepal_length",
+        "sepal_width",
+        "petal_length",
+        "petal_width"
+      ],
+      "operation_chain": "(needed_features[0]*needed_features[1])/(needed_features[2]*needed_features[3])"
+    }
+  ],
+  "filter": [
+  ]
+}

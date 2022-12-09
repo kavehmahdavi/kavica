@@ -1,0 +1,258 @@
+<div class=content>
+    <div class=container-fluid>
+        <div class="row header"><a class=anchor-pos id=OCA></a>
+            <h1 class=page-header>OCA</h1></div>
+        <div class=section-items>
+            <div class="row spacing">
+                <ul class="nav nav-pills" role=tablist>
+                    <li role=presentation class=active><a href=#OCA-Configuration aria-controls=OCA-Configuration
+                                                          role=tab data-toggle=tab>Configuration</a></li>
+
+                    <li role=presentation><a href=#OCA-outlier aria-controls=OCA-outlier role=tab data-toggle=tab>Outlier
+                        Detection</a></li>
+
+                    <li role=presentation><a href=#OCA-Validation aria-controls=OCA-Validation role=tab data-toggle=tab>Validation</a>
+                    </li>
+
+                    <li role=presentation><a href=#OCA-Hits aria-controls=OCA-Hits role=tab data-toggle=tab>Hit Plot</a>
+                    </li>
+
+                    <li role=presentation><a href=#OCA-main-inertias aria-controls=OCA-main-inertias role=tab
+                                             data-toggle=tab>Main Inertias</a></li>
+
+                    <li role=presentation><a href=#OCA-inertias-derivers aria-controls=OCA-inertias-derivers role=tab
+                                             data-toggle=tab>Inertia Drivers</a></li>
+
+                    <li role=presentation><a href=#OCA-planes aria-controls=OCA-planes role=tab data-toggle=tab>Weight
+                        Planes</a></li>
+
+                    <li role=presentation><a href=#OCA-supper-cluster aria-controls=OCA-supper-cluster role=tab
+                                             data-toggle=tab>Supper Clusters</a></li>
+                </ul>
+                <div class=tab-content style="padding-top: 10px;">
+
+                    <div role=tabpanel class="tab-pane col-sm-12 active" id=OCA-Configuration>
+                        <div class=col-sm-6>
+                            <p class=h4>Clustering Configuration</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Number of Clusters</th>
+                                    <td>#number_of_clusters</td>
+                                </tr>
+                                <tr>
+                                    <th>Cluster By</th>
+                                    <td>#cluster_by</td>
+                                </tr>
+                                <tr>
+                                    <th>Selected Clusters</th>
+                                    <td>#selected_clusters</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Original variables</th>
+                                    <td>#number_of_original_variables</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Derived variables</th>
+                                    <td>#number_of_derived_variables</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Observations</th>
+                                    <td>#number_of_observations</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class=h4>OCA Configuration</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>ANN Size</th>
+                                    <td>#ANN_size</td>
+                                </tr>
+                                <tr>
+                                    <th>Epoch</th>
+                                    <td>#epoch</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=col-sm-6><p class=h4>Overall Scatter Plot</p>
+                            <img src="pic/over_all_scatter_plot.png" class="center">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-outlier>
+                        <div class=col-sm-6>
+                            <p class=h4>Configuration</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <td>#outliers_algorithm</td>
+                                </tr>
+                                <tr>
+                                    <th>Contamination (%)</th>
+                                    <td>#outliers_contamination</td>
+                                </tr>
+                                <tr>
+                                    <th>n_samples</th>
+                                    <td>#outliers_n_samples</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class=h4>Results</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Number of Detected/Eliminated Outliers</th>
+                                    <td>#Number_Outliers_detected</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=col-sm-6><p class=h4>Data Contamination Contour Plot</p>
+                            <img src="pic/outliers.png" class="center">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-Validation>
+                        <div class=col-sm-6>
+                            <p class=h4>Topological</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Upper Bound</th>
+                                    <td>#upper_bound_acc</td>
+                                </tr>
+                                <tr>
+                                    <th>Accuracy</th>
+                                    <td>#accuracy</td>
+                                </tr>
+                                <tr>
+                                    <th>Lower Bound</th>
+                                    <td>#lower_bound_acc</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class=h4>Likelihood</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>kolgomorov Smirnov test</th>
+                                    <td>#kolgomorov_smirnov_test</td>
+                                </tr>
+                                <tr>
+                                    <th>Embedding Index test</th>
+                                    <td>#embedding_index_test</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=col-sm-6><p class=h4>Training Progress Over the Epochs</p>
+                            <img src="pic/training_progress_plot.png" class="center">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-Hits>
+                        <div class=col-sm-4><p class=h4>Code Map</p>
+                            <img src="pic/som_code_map.png" class="center" style="width: 100%;">
+                        </div>
+                        <div class=col-sm-4><p class=h4>Sample Hits</p>
+                            <img src="pic/sample_hits_plot.png" class="center" style="width: 100%;">
+                        </div>
+                        <div class=col-sm-4><p class=h4>Distance Hits</p>
+                            <img src="pic/neighbor_distance_hexbin_plot.png" class="center" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-main-inertias>
+                        <div class=col-sm-6><p class=h4>Weight Position</p>
+                            <img src="pic/weight_positions_plot.png" class="center">
+                        </div>
+                        <div class=col-sm-6><p class=h4>Concave Hall</p>
+                            <img src="pic/concave_hull_plot.png" class="center">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-inertias-derivers>
+                        <div class=col-sm-6>
+                            <p class=h4>The Primary and Secondary Inertia Feature Load:</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Primary Inertia</th>
+                                    <th>Secondary Inertia</th>
+                                </tr>
+                                #inertia_content
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                        <div class=col-sm-6><p class=h4>Driver Features Plot</p>
+                            <img src="pic/inertia_drivers_hbar_plot.png" class="center" style="width: 80%">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-planes>
+                        <div class=col-sm-4><p class=h4>Code Map</p>
+                            <img src="pic/som_code_map.png" class="center" style="width: 100%;">
+                        </div>
+                        <div class=col-sm-6><p class=h4>Features Weight Planes</p>
+                            <img src="pic/weight_planes_plot.png" class="center" style="width: 130%;">
+                        </div>
+                    </div>
+
+                    <div role=tabpanel class="tab-pane col-sm-12" id=OCA-supper-cluster>
+                        <div class=col-sm-6>
+                            <p class=h4>Supper Clusters</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>Number of Clusters</th>
+                                    <td>#number_of_clusters</td>
+                                </tr>
+                                <tr>
+                                    <th>Cluster By</th>
+                                    <td>#cluster_by</td>
+                                </tr>
+                                <tr>
+                                    <th>Selected Clusters</th>
+                                    <td>#selected_clusters</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Original variables</th>
+                                    <td>#number_of_original_variables</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Derived variables</th>
+                                    <td>#number_of_derived_variables</td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Observations</th>
+                                    <td>#number_of_observations</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class=h4>OCA Configuration</p>
+                            <table class="table table-condensed stats">
+                                <tbody>
+                                <tr>
+                                    <th>ANN Size</th>
+                                    <td>#ANN_size</td>
+                                </tr>
+                                <tr>
+                                    <th>Epoch</th>
+                                    <td>#epoch</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=col-sm-6><p class=h4>Starburst PLot</p>
+                            <img src="pic/heatmap_plot.png" class="center">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>

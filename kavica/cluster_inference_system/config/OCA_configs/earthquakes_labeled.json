@@ -1,0 +1,42 @@
+{
+  "clusteringsuit": false,
+  "eliminating_columns": [
+    "time.year",
+    "id",
+    "location.full",
+    "location.name",
+    "time.day",
+    "time.full",
+    "time.minute",
+    "time.second",
+    "Unnamed: 0",
+    "time.month"
+  ],
+  "pass_trough": [
+  ],
+  "KNN_complimentary": [],
+  "normalize": "max",
+  "sampling": {
+    "frac": 0.01,
+    "replace": true
+  },
+  "derive_feature": true,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.01,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "cosine_Similarity",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+  ],
+  "engineer_feature": [
+  ],
+  "derived_features": [
+  ],
+  "filter": [
+  ]
+}

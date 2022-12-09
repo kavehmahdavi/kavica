@@ -1,0 +1,54 @@
+{
+  "clusteringsuit": true,
+  "eliminating_columns": [
+    "# Instance",
+    "Duration",
+    "End_Time",
+    "n_PAPI_TOT_INS",
+    "n_IPC"
+  ],
+  "pass_trough": [
+    "TaskId",
+    "ThreadId",
+    "Begin_Time",
+    "Line"
+  ],
+  "KNN_complimentary": [],
+  "normalize": "max",
+  "sampling": {
+    "frac": 1.0,
+    "replace": true
+  },
+  "derive_feature": false,
+  "Outlier detection": {
+    "algorithm": "isolation_forest",
+    "fraction": 0.05,
+    "n_samples": "auto"
+  },
+  "make_jupiter_report": true,
+  "similarity_by": "cosine_Similarity",
+  "ratio_divisor": "",
+  "ratio_invert": false,
+  "log_log": false,
+  "convert_to_ratio": [
+        "x_PAPI_L1_DCM",
+        "x_PAPI_L2_DCM",
+        "x_PAPI_L3_TCM"
+  ],
+  "derived_features": [
+  ],
+  "filter": [
+    {
+      "needed_features": [
+        "d_IPC"
+      ],
+      "operation_chain": "needed_features[0] > 0"
+    },
+    {
+      "needed_features": [
+        "d_PAPI_TOT_INS"
+      ],
+      "operation_chain": "needed_features[0] > 0"
+    }
+  ]
+}

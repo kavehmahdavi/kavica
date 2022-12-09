@@ -1,0 +1,170 @@
+{
+  "iris": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 16,
+    "epc_bw": 0.72113,
+    "minpt_bw": 16,
+    "s": 100,
+    "kernel": "poly",
+    "test_size": 0.10,
+    "axis_lab": [
+      "Sepal length",
+      "Petal length"
+    ]
+  },
+  "pan_cancer": {
+    "full": true,
+    "epc_fw": 16.2,
+    "minpt_fw": 27,
+    "epc_bw": 19.775,
+    "minpt_bw": 27,
+    "s": 40,
+    "kernel": "rbf",
+    "test_size": 0.2,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "breast-cancer": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 1.695,
+    "minpt_bw": 19,
+    "s": 50,
+    "kernel": "poly",
+    "test_size": 0.2,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "wifi": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 0.365,
+    "minpt_bw": 10,
+    "s": 50,
+    "kernel": "poly",
+    "test_size": 0.10,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "NBA": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 0.7,
+    "minpt_bw": 15,
+    "s": 50,
+    "kernel": "linear",
+    "test_size": 0.2,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "NBA_2Class": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 1.04,
+    "minpt_bw": 25,
+    "s": 50,
+    "kernel": "linear",
+    "test_size": 0.2,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "synt": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 1.62,
+    "minpt_bw": 17,
+    "s": 50,
+    "kernel": "poly",
+    "test_size": 0.2,
+    "axis_lab": [
+      "X",
+      "Y"
+    ]
+  },
+  "hbscan": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 1.62,
+    "minpt_bw": 17,
+    "s": 50,
+    "kernel": "poly",
+    "test_size": 0.2,
+    "axis_lab": [
+      "X",
+      "Y"
+    ]
+  },
+  "synt-shape": {
+    "full": true,
+    "epc_fw": 0.7,
+    "minpt_fw": 10,
+    "epc_bw": 1.62,
+    "minpt_bw": 17,
+    "s": 10,
+    "kernel": "poly",
+    "test_size": 0.2,
+    "axis_lab": [
+      "X",
+      "Y"
+    ]
+  },
+  "OFF_EVENTES": {
+    "full": true,
+    "epc_fw": 0.4,
+    "minpt_fw": 20,
+    "epc_bw": 4.65,
+    "minpt_bw": 10,
+    "s": 30,
+    "kernel": "poly",
+    "test_size": 0.10,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "DRWR": {
+    "full": true,
+    "epc_fw": 0.4,
+    "minpt_fw": 20,
+    "epc_bw": 0.26,
+    "minpt_bw": 5,
+    "s": 50,
+    "kernel": "poly",
+    "test_size": 0.10,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  },
+  "Gromacs": {
+    "full": true,
+    "epc_fw": 0.4,
+    "minpt_fw": 20,
+    "epc_bw": 0.0391,
+    "minpt_bw": 8,
+    "s": 90,
+    "kernel": "poly",
+    "test_size": 0.10,
+    "axis_lab": [
+      "PC1",
+      "PC2"
+    ]
+  }
+}

@@ -195,6 +195,7 @@ class Distributor(object):
                 warnings.warn('The /temp/ directory will have been not needed. It has been deleted.')
                 shutil.rmtree(self.root_dir)
 
+
         def __chunk_pars(chunk_name, parser_object):
             """ Setup the arguments and run the parser objects"""
             sys.argv[2] = str(self.root_dir) + '/' + str(chunk_name)

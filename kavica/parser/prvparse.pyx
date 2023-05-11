@@ -480,7 +480,7 @@ cdef class Parser(ParsedArgs):
                                traceLines[7]]
                     self.stateRecord = np.vstack((self.stateRecord, newRow))
 
-                elif traceLines[0] == '2':  # events data
+                 elif traceLines[0] == '2':  # events data
                     traceLines = list(traceLines.split(':'))
                     thread_id = ("{0}.{1}.{2}.{3}".format(traceLines[1],
                                                           traceLines[2],
@@ -508,6 +508,7 @@ cdef class Parser(ParsedArgs):
                         newRow += hcValidatedDict['hcDict'].values()
                         newRow += hcValidatedDict['callStackDict'].values()
                         self.eventRecord = np.vstack((self.eventRecord, newRow))
+
 
                 elif traceLines[0] == '3':  # communication
                     traceLines = list(traceLines.split(':'))

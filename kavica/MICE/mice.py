@@ -14,15 +14,17 @@ from terminaltables import DoubleTable
 from scipy.stats.mstats import gmean, hmean
 from time import sleep
 import itertools
-import matplotlib.pyplot as plt
 from sklearn import linear_model, discriminant_analysis
 import json
 import argparse
 import sys
 import time
+import matplotlib.pyplot as plt
+import seaborn as sns
+import missingno as msno
 
 __all__ = ['__configoration',
-           'data_structure_Compatibilization',
+           'data_structure_compatibilization',
            'MissingValuePreProcessing',
            'Mice'
            ]
@@ -48,7 +50,7 @@ def __configoration(config, data):
 
     # config the data set based on configuration information
     df = df[active_features]  # sub set of features
-    return df, pass_through_features, columns_order
+    return df, pass_through_features, columns_order, list(config_dict['hardware_counters'].values())
 
 
 def arguments_parser():
@@ -104,7 +106,7 @@ def arguments_parser():
              "iteration": args.i})
 
 
-def data_structure_Compatibilization(data=None, header=True, index=True):
+def data_structure_compatibilization(data=None, header=True, index=True):
     if data is None:
         raise ValueError("The data set is empty")
 
@@ -149,7 +151,8 @@ class MissingValuePreProcessing(object):
                  dropColumn=False,
                  notDropColumnMap=dict(),
                  dropColumnThreshold=0.3,
-                 inplace=False):
+                 inplace=False,
+                 feature_list=None):
         self.orginalData = data
         self.data = data
         self.missedValuesMap = missedValuesMap
@@ -161,9 +164,13 @@ class MissingValuePreProcessing(object):
         self.dropColumn = dropColumn
         self.inplace = inplace
         self.notDropColumnMap = notDropColumnMap  # it is a binary array
+        self.feature_list = feature_list
 
     def __call__(self):
-        self._data_structure_Compatibilization()
+        self._data_structure_compatibilization()
+        self.__zero2nan(feature_list=self.feature_list)
+        self._extract_missing_pattern()
+        self.missing_pattern_plot()
         self._missing_value_map()
         self._write_csv()
 
@@ -171,13 +178,41 @@ class MissingValuePreProcessing(object):
     def __csv2hdf5(self):
         pass
 
-    def _write_csv(self, appendTo=None, csvPath=None, order=None, output_path='imputed.csv'):
+    def __zero2nan(self, feature_list=None):
+        """Replace the zero in indicated features with NaN
 
-        # Write the output as CSV dataset
+        Return:
+
+        """
+        if not feature_list:
+            self.data.replace(0, np.nan, inplace=True)  # for test package
+        else:
+            self.data[feature_list] = self.data[feature_list].replace(0, np.nan)
+
+    def _extract_missing_pattern(self):
+
+        print(self.data.columns)
+        missing_value_groups=self.data.isnull().groupby(list(self.data.columns)).groups
+
+        missing_value_patterns=pd.DataFrame(list(missing_value_groups.keys()),columns=self.data.columns)
+        print(missing_value_patterns[['PAPI_L2_DCM', 'PAPI_L1_DCM', 'PAPI_BR_INS','PAPI_L3_TCM', 'PAPI_BR_MSP']])
+        print(missing_value_groups)
+        exit()
+        pass
+
+
+    def _write_csv(self, appendTo=None, csvPath=None, order=None, output_path='imputed.csv'):
+        """ Write the output as CSV dataset
+        :param appendTo:
+        :param csvPath:
+        :param order:
+        :param output_path:
+        :return:
+        """
         if isinstance(self.imputedData, pd.core.frame.DataFrame):
             # read the pass_through_features from the original dataset(data) and append to the final output.
             appending_columns = pd.read_csv(csvPath, usecols=appendTo)
-            sin_complimentary=list(set(self.imputedData.columns)-set(appending_columns))
+            sin_complimentary = list(set(self.imputedData.columns) - set(appending_columns))
 
             self.imputedData = pd.concat([appending_columns, self.imputedData[sin_complimentary]], axis=1)
 
@@ -191,9 +226,14 @@ class MissingValuePreProcessing(object):
         else:
             warnings.warn('The imputed data has not initiated yet.', UserWarning)
 
-    def _data_structure_Compatibilization(self, data=None, header=True, index=True):
+    def _data_structure_compatibilization(self, data=None, header=True, index=True):
+        """ Initialization the data set
+        :param data:
+        :param header:
+        :param index:
+        :return:
+        """
 
-        # Initialization the data set
         def __init(data):
             if data is None:
                 if self.data is None:
@@ -203,7 +243,7 @@ class MissingValuePreProcessing(object):
             else:
                 self.data = data
 
-        # Convert to dataframe
+        # Convert to data frame
         def __numpy2panda(header, index):
             if type(self.data) is not pd.core.frame.DataFrame:
                 if header:
@@ -222,7 +262,6 @@ class MissingValuePreProcessing(object):
             else:
                 pass
 
-        # not empty data set
         def __datashape():
             if len(self.data.shape) is not 2:  # Check the shape
                 raise ValueError("Expected 2d matrix, got %s array" % (self.data.shape,))
@@ -268,7 +307,6 @@ class MissingValuePreProcessing(object):
             print(featureList)
             for [featureItem, missingValues] in zip(featureList,
                                                     missedValueList):
-
                 missingValues = missingValues / rows
                 if missingValues < self.dropColumnThreshold:
                     self.notDropColumnMap.update({featureItem: featureList.index(featureItem)})
@@ -357,7 +395,7 @@ class MissingValuePreProcessing(object):
                 hmeans.append(hmean(noZeroNanColumnItem))
             return hmeans
 
-        def __generatorMissiedValuesMap():
+        def generatorMissiedValuesMap():
             notDropedFeatureIndex = self.notDropColumnMap.values()
             for [indexItem, headerItem] in zip(self.missedValuesMap[0],
                                                self.missedValuesMap[1]):
@@ -399,11 +437,32 @@ class MissingValuePreProcessing(object):
             return
         _imput()
 
+    # TODO: visualisation with: Stricplot, bwplot, densityplot
+    def missing_pattern_plot(self, method='matrix'):
+        """Visualizing the patterns of missing value occurrence
+
+        Args:
+            method (str): Indicates the plot format ("heatmap", "matrix", and "mosaic")
+        Return:
+            A jpeg image of the missing value patterns
+        """
+        if method.lower() == 'matrix':
+            msno.matrix(self.data)
+        elif method.lower() == 'mosaic':
+            sns.heatmap(self.data.isnull(), cbar=False)
+        elif method.lower() == 'bar':
+            msno.bar(self.data)
+        elif method.lower() == 'dendrogram':
+            msno.dendrogram(self.data)
+        if method.lower() == 'heatmap':
+            msno.heatmap(self.data)
+        plt.show()
+
 
 class Mice(MissingValuePreProcessing):
 
-    def __init__(self, data=None, imputMethod=None, predictMethod='norm', iteration=10):
-        super(Mice, self).__init__(data)
+    def __init__(self, data=None, imputMethod=None, predictMethod='norm', iteration=10, feature_list=None):
+        super(Mice, self).__init__(data=data, feature_list=feature_list)
         self.imputMethod = imputMethod
         self.trainSubsetX = None
         self.testSubsetX = None
@@ -424,7 +483,7 @@ class Mice(MissingValuePreProcessing):
     def predictive_model(self):
         """
         Note:
-            - QDA is sensitive about the number of the instanses in a class (>1).
+            - QDA is sensitive about the number of the instances in a class (>1).
         """
         methods = [
             # TODO: complete the function list
@@ -449,7 +508,7 @@ class Mice(MissingValuePreProcessing):
 
         # IsDone: send the function as parameter
         def modeler(methodToRun):
-            # Fating the training y, it is needed when we are using 'Sklearn' package.
+            # Fitting the training y, it is needed when we are using 'Sklearn' package.
             flatedTrainY = np.array(self.trainSubsetY.iloc[:, 0].values.tolist())
 
             # Create linear regression object
@@ -476,7 +535,7 @@ class Mice(MissingValuePreProcessing):
 
         # MICE prediction method switch-case
         if self.predictMethod == 'norm.nob':
-            method = linear_model.LinearRegression()
+            method = linear_model.LinearRegression(fit_intercept=False)
         elif self.predictMethod == 'norm':
             method = linear_model.BayesianRidge(compute_score=True)
         elif self.predictMethod == 'lda':
@@ -492,9 +551,9 @@ class Mice(MissingValuePreProcessing):
 
         return modeler(method)
 
-    # TODO: Post-prossesing
+    # TODO: Post-possessing
     """
-        - Post-prossesing  ( Non-negative, 
+        - Post-possessing  ( Non-negative, 
                                     Integer , 
                                     In the boundary)
     """
@@ -581,10 +640,8 @@ class Mice(MissingValuePreProcessing):
         table = DoubleTable(self.iterationLog.tolist())
         table.inner_heading_row_border = False
         table.justify_columns[1] = 'center'
-        print(table.table)
+        # print(table.table)
         __plot_conversion()
-
-    # TODO: visualisation with: Stricplot, bwplot, densityplot
 
 
 # ---------------------------------------------------------------------------
@@ -600,21 +657,60 @@ def __test_me():
     print(obj.orginalData)
     obj()
     print(obj.imputedData)
+    obj.missing_pattern_plot('heatmap')
 
+
+def __test_me_iris():
+    from sklearn import datasets
+    from sklearn.metrics import r2_score
+    import random
+
+    data = datasets.load_iris().data[:, :4]
+    data = pd.DataFrame(data, columns=['F1', 'F2', 'F3', 'F4'])
+    data1=data.copy()
+    x=[]
+    y=[]
+    old_value=[]
+    mean_ind=data1.mean(axis = 0).values
+    mean_list=[]
+
+    for i in range(16):
+        xv=random.randint(0,145)
+        yv=random.randint(0,3)
+        old_value.append(data1.iloc[xv, yv])
+        mean_list.append(mean_ind[yv])
+        data.iloc[xv,yv]=np.NaN
+        x.append(xv)
+        y.append(yv)
+
+    obj = Mice(data,iteration=100)
+    obj()
+
+    pred=[]
+    for i,j,v in zip(x,y,old_value):
+        print(i,j,'--',v,'-',obj.imputedData.iloc[i,j])
+        pred.append(obj.imputedData.iloc[i,j])
+
+    obj.missing_pattern_plot('heatmap')
+    print(r2_score(old_value, pred, multioutput = 'variance_weighted'))
+    print(1-(1-r2_score(old_value, pred, multioutput = 'variance_weighted'))*(data1.shape[0]-1)/(data1.shape[0]-data1.shape[1]-1))
+    print('-+'*30)
+    print(r2_score(old_value, mean_list, multioutput = 'variance_weighted'))
+    print(1-(1-r2_score(old_value, mean_list, multioutput = 'variance_weighted'))*(data1.shape[0]-1)/(data1.shape[0]-data1.shape[1]-1))
 
 def __mice():
-    
     start = time.time()
     try:
         args = arguments_parser()
-        df, features_appending_list, columns_order = __configoration(args['configPath'], args['csvPath'])
-        obj = Mice(df, predictMethod=args['predict_method'], iteration=args['iteration'])
+        df, features_appending_list, columns_order, feature_list = __configoration(args['configPath'], args['csvPath'])
+        obj = Mice(df, predictMethod=args['predict_method'], iteration=args['iteration'], feature_list=feature_list)
         obj()
         obj._write_csv(output_path=args['imputedPath'],
-                    appendTo=features_appending_list,
-                    csvPath=args['csvPath'],
-                    order=columns_order)
+                       appendTo=features_appending_list,
+                       csvPath=args['csvPath'],
+                       order=columns_order)
         print("\033[32mThe missing value imputation process is successfully completed by MICE method.")
+        return obj
     except AssertionError as error:
         print(error)
         print("\033[31mThe feature selection proses is failed.")
@@ -624,4 +720,7 @@ def __mice():
 
 
 if __name__ == '__main__':
+    #__test_me_iris()
     __mice()
+
+
